@@ -24,7 +24,7 @@
             //   show back to user and ask if it seems correct before proceeding
 
             // should also calculate general tax someone will pay to show net result?
-            Console.Write("am i working");
+            Console.WriteLine("am i working");
         }
     }
 }
