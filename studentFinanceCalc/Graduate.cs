@@ -14,7 +14,6 @@
         // Conventionally, lower-case 'name' is the field and upper-case 'Name' is the property.
         // See: https://www.w3schools.com/cs/cs_properties.php.
 
-        public decimal hourly_wage { get; set; }
         public decimal monthly_wage { get; set; }
         public decimal yearly_wage { get; set; }
 
@@ -35,7 +34,6 @@
             Graduate graduate = new Graduate()
             {
                 Name = "",
-                hourly_wage = 0,
                 monthly_wage = 0,
                 yearly_wage = 0,
                 plan1 = false,
@@ -44,32 +42,23 @@
                 postgrad = false
             };
 
-            Console.WriteLine("Would you like to enter your wage hourly, monthly or yearly?\nPlease type a number:\n\n1. Hourly.\t2. Monthly.\t3. Yearly.");
+            Console.WriteLine("Would you like to enter your wage monthly or yearly?\nPlease type a number:\n\n1. Monthly.\t2. Yearly.");
             int wageType = int.Parse(Console.ReadLine());
 
             switch (wageType)
             {
                 case 1:
-                    Console.Write("Please enter your hourly wage: £");
-                    graduate.hourly_wage = decimal.Parse(Console.ReadLine());
-                    graduate.monthly_wage = (graduate.hourly_wage * 40) * 4;
-                    graduate.yearly_wage = (graduate.hourly_wage * 40) * 52;
-                    Console.WriteLine($"Based on that number, before tax and other deductions, your hourly wage is {graduate.hourly_wage}, your monthly wage is {graduate.monthly_wage} and your yearly wage is {graduate.yearly_wage}.");
-                    break;
-                case 2:
                     Console.Write("Please enter your monthly wage: £");
                     graduate.monthly_wage = decimal.Parse(Console.ReadLine());
-                    graduate.hourly_wage = (graduate.monthly_wage / 4) / 40;
                     graduate.yearly_wage = graduate.monthly_wage * 12;
                     // Above calculation doesn't come out the same as case 1. Numerical type specificity issue?
-                    Console.WriteLine($"Based on that number, before tax and other deductions, your hourly wage is {graduate.hourly_wage}, your monthly wage is {graduate.monthly_wage} and your yearly wage is {graduate.yearly_wage}.");
+                    Console.WriteLine($"Based on that number, before tax and other deductions, your monthly wage is £{graduate.monthly_wage} and your yearly wage is £{graduate.yearly_wage}.");
                     break;
-                case 3:
+                case 2:
                     Console.Write("Please enter your yearly wage: £");
                     graduate.yearly_wage = decimal.Parse(Console.ReadLine());
-                    graduate.hourly_wage = (((graduate.yearly_wage / 12) / 4) / 40);
                     graduate.monthly_wage = graduate.yearly_wage / 12;
-                    Console.WriteLine($"Based on that number, before tax and other deductions, your hourly wage is {graduate.hourly_wage}, your monthly wage is {graduate.monthly_wage} and your yearly wage is {graduate.yearly_wage}.");
+                    Console.WriteLine($"Based on that number, before tax and other deductions, your monthly wage is £{graduate.monthly_wage} and your yearly wage is £{graduate.yearly_wage}.");
                     break;
                 default:
                     Console.Write("Unreadable value provided!");
