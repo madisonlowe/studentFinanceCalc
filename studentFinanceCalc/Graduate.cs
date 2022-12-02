@@ -1,6 +1,6 @@
 ﻿namespace studentFinanceCalc
 {
-    class Program
+    class Graduate
     {
         static void Main()
         {
@@ -12,7 +12,7 @@
             // plan 4: current interest rate (changes regularly), threshhold for repayment
             // masters: current interest rate (changes regularly), threshhold for repayment
 
-            //
+            // class Student
 
             // calculate for plan 1, plan 2, plan 4, and masters repayments
 
