@@ -44,10 +44,6 @@
                 postgrad = false
             };
 
-
-            //var wageValues = new Dictionary<string, decimal>()
-            //{ {"hourlyWage", 0}, {"monthlyWage", 0}, {"yearlyWage", 0} };
-
             Console.WriteLine("Would you like to enter your wage hourly, monthly or yearly?\nPlease type a number:\n\n1. Hourly.\t2. Monthly.\t3. Yearly.");
             int wageType = int.Parse(Console.ReadLine());
 
@@ -56,19 +52,24 @@
                 case 1:
                     Console.Write("Please enter your hourly wage: £");
                     graduate.hourly_wage = decimal.Parse(Console.ReadLine());
-                    graduate.monthly_wage = graduate.hourly_wage * 12;
-                    Console.WriteLine(graduate.hourly_wage);
-                    Console.WriteLine(graduate.monthly_wage);
+                    graduate.monthly_wage = (graduate.hourly_wage * 40) * 4;
+                    graduate.yearly_wage = (graduate.hourly_wage * 40) * 52;
+                    Console.WriteLine($"Based on that number, before tax and other deductions, your hourly wage is {graduate.hourly_wage}, your monthly wage is {graduate.monthly_wage} and your yearly wage is {graduate.yearly_wage}.");
                     break;
                 case 2:
                     Console.Write("Please enter your monthly wage: £");
                     graduate.monthly_wage = decimal.Parse(Console.ReadLine());
-                    Console.WriteLine(graduate.monthly_wage);
+                    graduate.hourly_wage = (graduate.monthly_wage / 4) / 40;
+                    graduate.yearly_wage = graduate.monthly_wage * 12;
+                    // Above calculation doesn't come out the same as case 1. Numerical type specificity issue?
+                    Console.WriteLine($"Based on that number, before tax and other deductions, your hourly wage is {graduate.hourly_wage}, your monthly wage is {graduate.monthly_wage} and your yearly wage is {graduate.yearly_wage}.");
                     break;
                 case 3:
                     Console.Write("Please enter your yearly wage: £");
                     graduate.yearly_wage = decimal.Parse(Console.ReadLine());
-                    Console.WriteLine(graduate.yearly_wage);
+                    graduate.hourly_wage = (((graduate.yearly_wage / 12) / 4) / 40);
+                    graduate.monthly_wage = graduate.yearly_wage / 12;
+                    Console.WriteLine($"Based on that number, before tax and other deductions, your hourly wage is {graduate.hourly_wage}, your monthly wage is {graduate.monthly_wage} and your yearly wage is {graduate.yearly_wage}.");
                     break;
                 default:
                     Console.Write("Unreadable value provided!");
@@ -79,6 +80,7 @@
 
         static void Main()
         {
+
 
             // goal: calculate tax that will be taken off of you for uk student loans
 
