@@ -2,45 +2,84 @@
 {
     class Graduate
     {
-        public static object GatherWage()
+        private string name;
+        public string Name
         {
-            var wageValues = new Dictionary<string, decimal>()
-            { {"hourlyWage", 0}, {"monthlyWage", 0}, {"annualWage", 0} };
+            get { return name; }
+            set { name = value; }
+        }
+        // Specific example above something I wanted to remember that I read in an article.
+        // The private string is representative of a 'sensitive' value.
+        // We provide read and write permissions through a public proxy value - Name - with get and set.
+        // Conventionally, lower-case 'name' is the field and upper-case 'Name' is the property.
+        // See: https://www.w3schools.com/cs/cs_properties.php.
 
-            Console.WriteLine("Would you like to enter your wage hourly, monthly or annually?\nPlease type a number:\n\n1. Hourly.\t2. Monthly.\t3. Annually.");
+        public decimal hourly_wage { get; set; }
+        public decimal monthly_wage { get; set; }
+        public decimal yearly_wage { get; set; }
+
+        public bool plan1 { get; set; }
+        public bool plan2 { get; set; }
+        public bool plan4 { get; set; }
+        public bool postgrad { get; set; }
+
+        // Google: how to make bool[] of named values eg. [plan1, plan2, plan4, postgrad].
+    }
+
+    class Calculator
+    {
+
+        public static object GatherInfo()
+        {
+
+            Graduate graduate = new Graduate()
+            {
+                Name = "",
+                hourly_wage = 0,
+                monthly_wage = 0,
+                yearly_wage = 0,
+                plan1 = false,
+                plan2 = false,
+                plan4 = false,
+                postgrad = false
+            };
+
+
+            //var wageValues = new Dictionary<string, decimal>()
+            //{ {"hourlyWage", 0}, {"monthlyWage", 0}, {"yearlyWage", 0} };
+
+            Console.WriteLine("Would you like to enter your wage hourly, monthly or yearly?\nPlease type a number:\n\n1. Hourly.\t2. Monthly.\t3. Yearly.");
             int wageType = int.Parse(Console.ReadLine());
 
             switch (wageType)
             {
                 case 1:
                     Console.Write("Please enter your hourly wage: £");
-                    wageValues["hourlyWage"] = decimal.Parse(Console.ReadLine());
-                    Console.WriteLine(wageValues["hourlyWage"]);
+                    graduate.hourly_wage = decimal.Parse(Console.ReadLine());
+                    graduate.monthly_wage = graduate.hourly_wage * 12;
+                    Console.WriteLine(graduate.hourly_wage);
+                    Console.WriteLine(graduate.monthly_wage);
                     break;
                 case 2:
                     Console.Write("Please enter your monthly wage: £");
-                    wageValues["monthlyWage"] = decimal.Parse(Console.ReadLine());
-                    Console.WriteLine(wageValues["monthlyWage"]);
+                    graduate.monthly_wage = decimal.Parse(Console.ReadLine());
+                    Console.WriteLine(graduate.monthly_wage);
                     break;
                 case 3:
-                    Console.Write("Please enter your annual wage: £");
-                    wageValues["annualWage"] = decimal.Parse(Console.ReadLine());
-                    Console.WriteLine(wageValues["annualWage"]);
+                    Console.Write("Please enter your yearly wage: £");
+                    graduate.yearly_wage = decimal.Parse(Console.ReadLine());
+                    Console.WriteLine(graduate.yearly_wage);
                     break;
                 default:
                     Console.Write("Unreadable value provided!");
                     break;
             }
-            return wageValues;
-        }
-
-        public static string GatherEducation()
-        {
-            return "30";
+            return graduate;
         }
 
         static void Main()
         {
+
             // goal: calculate tax that will be taken off of you for uk student loans
 
             // variables we need from user: annual wage, monthly wage, when you graduated, where you're from
@@ -61,7 +100,7 @@
             //   show back to user and ask if it seems correct before proceeding
 
             // should also calculate general tax someone will pay to show net result?
-            GatherWage();
+            GatherInfo();
         }
     }
 }
