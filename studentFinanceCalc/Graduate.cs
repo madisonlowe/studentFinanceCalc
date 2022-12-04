@@ -2,6 +2,7 @@
 {
     class Graduate
     {
+        // Class per file, tidy this.
         private string name;
         public string Name
         {
