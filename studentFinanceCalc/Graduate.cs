@@ -98,6 +98,30 @@
                 }
             }
 
+            if (graduate.plan1)
+            {
+                decimal remainder = (graduate.monthly_wage - PLAN_1_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
+                Console.WriteLine($"On Plan 1, you will repay £{remainder} every month in tax.");
+            }
+
+            if (graduate.plan2)
+            {
+                decimal remainder = (graduate.monthly_wage - PLAN_2_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
+                Console.WriteLine($"On Plan 2, you will repay £{remainder} every month in tax.");
+            }
+
+            if (graduate.plan4)
+            {
+                decimal remainder = (graduate.monthly_wage - PLAN_4_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
+                Console.WriteLine($"On Plan 4, you will repay £{remainder} every month in tax.");
+            }
+
+            if (graduate.postgrad)
+            {
+                decimal remainder = (graduate.monthly_wage - POSTGRAD_MONTHLY_THRESHOLD) * POSTGRAD_TAX;
+                Console.WriteLine($"On the Postgraduate Repayment Plan, you will repay £{remainder} every month in tax.");
+            }
+
             // Create results array, and for each plan which is true, calculate, and push tax to array?
 
             // Find out which plans are set to true from: plan1, plan2, plan4, postgrad.
