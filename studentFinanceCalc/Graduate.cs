@@ -96,13 +96,13 @@
 
         static void Main()
         {
-            const decimal PLAN_1_MONTHLY_THRESHOLD = 1682;
-            const decimal PLAN_2_MONTHLY_THRESHOLD = 2274;
+            const decimal PLAN_1_MONTHLY_THRESHOLD = 1682m;
+            const decimal PLAN_2_MONTHLY_THRESHOLD = 2274m;
             const decimal PLAN_4_MONTHLY_THRESHOLD = 2114m;
             const decimal POSTGRAD_MONTHLY_THRESHOLD = 1750m;
 
-            // const plan124taxvalue = 9%
-            // const postgradtaxvalue = 6%
+            const decimal PLANS_1_2_4_TAX = 0.9m;
+            const decimal POSTGRAD_TAX = 0.6m;
 
             // class Student
 
