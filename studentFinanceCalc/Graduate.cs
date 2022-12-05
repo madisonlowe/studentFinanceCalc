@@ -22,8 +22,15 @@
             public bool postgrad { get; set; }
         }
 
-        public static object GatherInfo()
+        static void Main()
         {
+            const decimal PLAN_1_MONTHLY_THRESHOLD = 1682m;
+            const decimal PLAN_2_MONTHLY_THRESHOLD = 2274m;
+            const decimal PLAN_4_MONTHLY_THRESHOLD = 2114m;
+            const decimal POSTGRAD_MONTHLY_THRESHOLD = 1750m;
+
+            const decimal PLANS_1_2_4_TAX = 0.09m;
+            const decimal POSTGRAD_TAX = 0.06m;
 
             Graduate graduate = new Graduate()
             {
@@ -90,21 +97,8 @@
                         break;
                 }
             }
-            return graduate;
-        }
 
-
-        static void Main()
-        {
-            const decimal PLAN_1_MONTHLY_THRESHOLD = 1682m;
-            const decimal PLAN_2_MONTHLY_THRESHOLD = 2274m;
-            const decimal PLAN_4_MONTHLY_THRESHOLD = 2114m;
-            const decimal POSTGRAD_MONTHLY_THRESHOLD = 1750m;
-
-            const decimal PLANS_1_2_4_TAX = 0.09m;
-            const decimal POSTGRAD_TAX = 0.06m;
-
-            // split GatherInfo into smaller chunks, return appropriately for calculations in Main.
+            // Create results array, and for each plan which is true, calculate, and push tax to array?
 
             // Find out which plans are set to true from: plan1, plan2, plan4, postgrad.
 
@@ -126,8 +120,6 @@
             // - Remaining wage after that.
 
             // Note: there are other things we are taxed for, I can work those out and add on later.
-
-            GatherInfo();
         }
     }
 }
