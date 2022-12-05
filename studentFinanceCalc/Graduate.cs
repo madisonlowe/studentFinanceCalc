@@ -1,6 +1,5 @@
 ﻿namespace studentFinanceCalc
 {
-
     class Calculator
     {
         class Graduate
@@ -17,8 +16,6 @@
             public decimal monthly_wage { get; set; }
             public decimal yearly_wage { get; set; }
 
-            public string student_type { get; set; }
-
             public bool plan1 { get; set; }
             public bool plan2 { get; set; }
             public bool plan4 { get; set; }
@@ -33,7 +30,6 @@
                 Name = "",
                 monthly_wage = 0,
                 yearly_wage = 0,
-                student_type = "",
                 plan1 = false,
                 plan2 = false,
                 plan4 = false,
@@ -77,52 +73,45 @@
                 switch (c)
                 {
                     case '1': // Casting c if 1 to char, otherwise tries to convert to string or int.
-                        Console.WriteLine("You are on Plan 1.");
+                        graduate.plan1 = true;
                         break;
                     case '2':
-                        Console.WriteLine("You are on Plan 2.");
+                        graduate.plan2 = true;
                         break;
                     case '3':
-                        Console.WriteLine("You are on Plan 4.");
+                        graduate.plan4 = true;
                         break;
                     case '4':
-                        Console.WriteLine("You are on the Postgraduate Repayment Plan.");
+                        graduate.postgrad = true;
                         break;
                     default:
                         Console.WriteLine(c);
-                        Console.WriteLine("Switch case not working."); // Logs twice, so loop works. Not the cases though.
+                        Console.WriteLine("Invalid value provided. You are not on any plan.");
                         break;
                 }
             }
-
             return graduate;
         }
 
 
         static void Main()
         {
+            const decimal PLAN_1_MONTHLY_THRESHOLD = 1682;
+            const decimal PLAN_2_MONTHLY_THRESHOLD = 2274;
+            const decimal PLAN_4_MONTHLY_THRESHOLD = 2114m;
+            const decimal POSTGRAD_MONTHLY_THRESHOLD = 1750m;
 
-
-            // goal: calculate tax that will be taken off of you for uk student loans
-
-            // variables we need from user: annual wage, monthly wage, when you graduated, where you're from
-            // plan 1: current interest rate (changes regularly), threshhold for repayment, monthly wage
-            // plan 2: current interest rate (changes regularly), threshhold for repayment, monthly wage
-            // plan 4: current interest rate (changes regularly), threshhold for repayment, monthly wage
-            // masters: current interest rate (changes regularly), threshhold for repayment, monthly wage
+            // const plan124taxvalue = 9%
+            // const postgradtaxvalue = 6%
 
             // class Student
 
             // calculate for plan 1, plan 2, plan 4, and masters repayments
 
-            // take in: when they graduated, what from, how many degrees
-            // take in: will you be entering your wage hourly or annually
-            // - if annual: take in annual wage pre-tax
-            // - if hourly: take in hours worked monthly,
-            //   calculate monthly wage and then annual wage,
+            // take in: when they graduated, what from, how many degrees DONE
+            // take in: will you be entering your wage hourly or annually DONE
+            //   calculate monthly wage and then annual wage DONE
             //   show back to user and ask if it seems correct before proceeding
-
-            // should also calculate general tax someone will pay to show net result?
             GatherInfo();
         }
     }
