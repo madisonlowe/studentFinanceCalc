@@ -1,33 +1,27 @@
 ﻿namespace studentFinanceCalc
 {
-    class Graduate
-    {
-        // Class per file, tidy this.
-        private string name;
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-        // Specific example above something I wanted to remember that I read in an article.
-        // The private string is representative of a 'sensitive' value.
-        // We provide read and write permissions through a public proxy value - Name - with get and set.
-        // Conventionally, lower-case 'name' is the field and upper-case 'Name' is the property.
-        // See: https://www.w3schools.com/cs/cs_properties.php.
-
-        public decimal monthly_wage { get; set; }
-        public decimal yearly_wage { get; set; }
-
-        public bool plan1 { get; set; }
-        public bool plan2 { get; set; }
-        public bool plan4 { get; set; }
-        public bool postgrad { get; set; }
-
-        // Google: how to make bool[] of named values eg. [plan1, plan2, plan4, postgrad].
-    }
 
     class Calculator
     {
+        class Graduate
+        {
+            // Class per file, tidy this.
+            private string name;
+            public string Name
+            {
+                get { return name; }
+                set { name = value; }
+            }
+            // See: https://www.w3schools.com/cs/cs_properties.php.
+
+            public decimal monthly_wage { get; set; }
+            public decimal yearly_wage { get; set; }
+
+            public bool plan1 { get; set; }
+            public bool plan2 { get; set; }
+            public bool plan4 { get; set; }
+            public bool postgrad { get; set; }
+        }
 
         public static object GatherInfo()
         {
@@ -51,14 +45,14 @@
                 case 1:
                     Console.Write("Please enter your monthly wage: £");
                     graduate.monthly_wage = decimal.Parse(Console.ReadLine());
-                    graduate.yearly_wage = graduate.monthly_wage * 12;
+                    graduate.yearly_wage = graduate.monthly_wage * 12m;
                     // Above calculation doesn't come out the same as case 1. Numerical type specificity issue?
                     Console.WriteLine($"Based on that number, before tax and other deductions, your monthly wage is £{graduate.monthly_wage} and your yearly wage is £{graduate.yearly_wage}.");
                     break;
                 case 2:
                     Console.Write("Please enter your yearly wage: £");
                     graduate.yearly_wage = decimal.Parse(Console.ReadLine());
-                    graduate.monthly_wage = graduate.yearly_wage / 12;
+                    graduate.monthly_wage = graduate.yearly_wage / 12m;
                     Console.WriteLine($"Based on that number, before tax and other deductions, your monthly wage is £{graduate.monthly_wage} and your yearly wage is £{graduate.yearly_wage}.");
                     break;
                 default:
