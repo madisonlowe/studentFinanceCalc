@@ -92,13 +92,13 @@
                         graduate.postgrad = true;
                         break;
                     default:
-                        Console.WriteLine(c);
                         Console.WriteLine("Invalid value provided. You are not on any plan.");
                         break;
                 }
             }
 
             decimal remainder = 0m;
+
 
             if (graduate.plan1)
             {
@@ -120,7 +120,7 @@
                 remainder += (graduate.monthly_wage - POSTGRAD_MONTHLY_THRESHOLD) * POSTGRAD_TAX;
             }
 
-            Console.WriteLine($"Collectively, you will repay £{remainder} every month in tax toward your student loans.");
+            Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.monthly_wage}, you will repay £{remainder} every month in tax toward your student loans.");
 
             // Create results array, and for each plan which is true, calculate, and push tax to array?
 
