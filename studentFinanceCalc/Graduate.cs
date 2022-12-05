@@ -74,7 +74,25 @@
 
             foreach (char c in planArr)
             {
-                int parsedChar = int.Parse(c);
+                switch (c)
+                {
+                    case '1': // Casting c if 1 to char, otherwise tries to convert to string or int.
+                        Console.WriteLine("You are on Plan 1.");
+                        break;
+                    case '2':
+                        Console.WriteLine("You are on Plan 2.");
+                        break;
+                    case '3':
+                        Console.WriteLine("You are on Plan 4.");
+                        break;
+                    case '4':
+                        Console.WriteLine("You are on the Postgraduate Repayment Plan.");
+                        break;
+                    default:
+                        Console.WriteLine(c);
+                        Console.WriteLine("Switch case not working."); // Logs twice, so loop works. Not the cases though.
+                        break;
+                }
             }
 
             return graduate;
