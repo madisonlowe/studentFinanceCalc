@@ -101,17 +101,32 @@
             const decimal PLAN_4_MONTHLY_THRESHOLD = 2114m;
             const decimal POSTGRAD_MONTHLY_THRESHOLD = 1750m;
 
-            const decimal PLANS_1_2_4_TAX = 0.9m;
-            const decimal POSTGRAD_TAX = 0.6m;
+            const decimal PLANS_1_2_4_TAX = 0.09m;
+            const decimal POSTGRAD_TAX = 0.06m;
 
-            // class Student
+            // split GatherInfo into smaller chunks, return appropriately for calculations in Main.
 
-            // calculate for plan 1, plan 2, plan 4, and masters repayments
+            // Find out which plans are set to true from: plan1, plan2, plan4, postgrad.
 
-            // take in: when they graduated, what from, how many degrees DONE
-            // take in: will you be entering your wage hourly or annually DONE
-            //   calculate monthly wage and then annual wage DONE
-            //   show back to user and ask if it seems correct before proceeding
+            // If plan1, plan2, plan4:
+            // - Do (monthly_wage - MONTHLY_THRESHOLD) * TAX;
+            // - (I think, I am not good at maths.)
+            // Remaining: monthly amount that will be taxed to pay back the given plan.
+
+            // If postgrad:
+            // - Do (monthly_wage - MONTHLY_THRESHOLD) * TAX;
+            // - (See previous caveat).
+            // Remaining: monthly amount that will be taxed to pay back the given plan.
+
+            // Overall:
+            // Relay back inputted details:
+            // - User's monthly and yearly wage.
+            // - The plans they are on.
+            // - How much they will pay back monthly and yearly on those plans.
+            // - Remaining wage after that.
+
+            // Note: there are other things we are taxed for, I can work those out and add on later.
+
             GatherInfo();
         }
     }
