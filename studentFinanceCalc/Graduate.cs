@@ -20,6 +20,8 @@
             public bool plan2 { get; set; }
             public bool plan4 { get; set; }
             public bool postgrad { get; set; }
+
+            public decimal monthly_remainder { get; set; }
         }
 
         static void Main()
@@ -69,7 +71,7 @@
             string postgrad = "4. You’re on a Postgraduate Loan repayment plan if you’re:\n- An English or Welsh student who took out a Postgraduate Master’s Loan on or after 1 August 2016.\n- An English or Welsh student who took out a Postgraduate Doctoral Loan on or after 1 August 2018.\nAn EU student who started a postgraduate course on or after 1 August 2016.";
 
 
-            Console.WriteLine($"Which of these statements is true?\nMore than one statement may be true if you have completed more than one programme of study.\nPlease type a number for each plan that applies to you.\n\n{plan1}\n\n{plan2}\n\n{plan4}\n\n{postgrad}");
+            Console.WriteLine($"Which of these statements is true?\nMore than one statement may be true if you have completed more than one programme of study.\nPlease type a number for each plan that applies to you, then press enter.\n\n{plan1}\n\n{plan2}\n\n{plan4}\n\n{postgrad}");
             string qualifications = Console.ReadLine();
             string parsedQualifications = new String(qualifications.Where(Char.IsDigit).ToArray());
 
@@ -96,31 +98,27 @@
                         break;
                 }
             }
-
-            decimal remainder = 0m;
-
-
             if (graduate.plan1)
             {
-                remainder += (graduate.monthly_wage - PLAN_1_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
+                graduate.monthly_remainder += (graduate.monthly_wage - PLAN_1_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
             }
 
             if (graduate.plan2)
             {
-                remainder += (graduate.monthly_wage - PLAN_2_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
+                graduate.monthly_remainder += (graduate.monthly_wage - PLAN_2_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
             }
 
             if (graduate.plan4)
             {
-                remainder += (graduate.monthly_wage - PLAN_4_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
+                graduate.monthly_remainder += (graduate.monthly_wage - PLAN_4_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
             }
 
             if (graduate.postgrad)
             {
-                remainder += (graduate.monthly_wage - POSTGRAD_MONTHLY_THRESHOLD) * POSTGRAD_TAX;
+                graduate.monthly_remainder += (graduate.monthly_wage - POSTGRAD_MONTHLY_THRESHOLD) * POSTGRAD_TAX;
             }
 
-            Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.monthly_wage}, you will repay £{remainder} every month in tax toward your student loans.");
+            Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.monthly_wage}, you will repay £{graduate.monthly_remainder} every month in tax toward your student loans.");
 
             // Create results array, and for each plan which is true, calculate, and push tax to array?
 
@@ -134,6 +132,7 @@
             // - Remaining wage after that.
 
             // Note: there are other things we are taxed for, I can work those out and add on later.
+            // Note: need to limit decimal places to 2 for monthly_remainder.
         }
     }
 }
