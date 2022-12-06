@@ -83,7 +83,7 @@ namespace studentFinanceCalc
             {
                 switch (c)
                 {
-                    case '1': // Casting c if 1 to char, otherwise tries to convert to string or int.
+                    case '1': // Casting c if 1 to char with '', otherwise tries to convert to string or int.
                         graduate.plan1 = true;
                         break;
                     case '2':
