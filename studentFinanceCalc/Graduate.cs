@@ -1,4 +1,6 @@
-﻿namespace studentFinanceCalc
+﻿using System.Globalization;
+
+namespace studentFinanceCalc
 {
     class Calculator
     {
@@ -118,7 +120,7 @@
                 graduate.monthly_remainder += (graduate.monthly_wage - POSTGRAD_MONTHLY_THRESHOLD) * POSTGRAD_TAX;
             }
 
-            Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.monthly_wage}, you will repay £{graduate.monthly_remainder} every month in tax toward your student loans.");
+            Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.monthly_wage}, you will repay £{graduate.monthly_remainder.ToString("F", CultureInfo.InvariantCulture)} every month in tax toward your student loans.");
 
             // Create results array, and for each plan which is true, calculate, and push tax to array?
 
