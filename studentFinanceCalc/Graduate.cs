@@ -75,7 +75,7 @@ namespace studentFinanceCalc
 
             Console.WriteLine($"Which of these statements is true?\nMore than one statement may be true if you have completed more than one programme of study.\nPlease type a number for each plan that applies to you, then press enter.\n\n{plan1}\n\n{plan2}\n\n{plan4}\n\n{postgrad}");
             string qualifications = Console.ReadLine();
-            string parsedQualifications = new String(qualifications.Where(Char.IsDigit).ToArray());
+            string parsedQualifications = new(qualifications.Where(Char.IsDigit).ToArray());
 
             char[] planArr = parsedQualifications.ToArray();
 
@@ -83,7 +83,7 @@ namespace studentFinanceCalc
             {
                 switch (c)
                 {
-                    case '1': // Casting c if 1 to char, otherwise tries to convert to string or int.
+                    case '1': // Casting c if 1 to char with '', otherwise tries to convert to string or int.
                         graduate.plan1 = true;
                         break;
                     case '2':
@@ -100,6 +100,7 @@ namespace studentFinanceCalc
                         break;
                 }
             }
+
             if (graduate.plan1)
             {
                 graduate.monthly_remainder += (graduate.monthly_wage - PLAN_1_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
@@ -120,21 +121,14 @@ namespace studentFinanceCalc
                 graduate.monthly_remainder += (graduate.monthly_wage - POSTGRAD_MONTHLY_THRESHOLD) * POSTGRAD_TAX;
             }
 
-            Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.monthly_wage}, you will repay £{graduate.monthly_remainder.ToString("F", CultureInfo.InvariantCulture)} every month in tax toward your student loans.");
+            decimal yearlyRemaining = graduate.monthly_remainder * 12m; // Move to same place as monthly_remainder?
 
-            // Create results array, and for each plan which is true, calculate, and push tax to array?
+            decimal monthlyLeftover = graduate.monthly_wage - graduate.monthly_remainder;
+            decimal yearlyLeftover = graduate.yearly_wage - yearlyRemaining;
 
-            // Find out which plans are set to true from: plan1, plan2, plan4, postgrad.
-
-            // Overall:
-            // Relay back inputted details:
-            // - User's monthly and yearly wage.
-            // - The plans they are on.
-            // - How much they will pay back monthly and yearly on those plans.
-            // - Remaining wage after that.
+            Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.monthly_wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.monthly_remainder.ToString("F", CultureInfo.InvariantCulture)} every month in tax towards your student loans, leaving £{monthlyLeftover.ToString("F", CultureInfo.InvariantCulture)}. Out of a yearly pre-deduction wage of £{graduate.yearly_wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{yearlyRemaining.ToString("F", CultureInfo.InvariantCulture)} every year in tax towards your student loans, leaving £{yearlyLeftover.ToString("F", CultureInfo.InvariantCulture)}.\n\nThese figures do not account for other deductions for things like National Insurance and pension contributions. Also, they're just an estimate, I'm pretty bad at maths, and the interest rates for loans change at least yearly and sometimes more often! So double-check the government website!");
 
             // Note: there are other things we are taxed for, I can work those out and add on later.
-            // Note: need to limit decimal places to 2 for monthly_remainder.
         }
     }
 }
