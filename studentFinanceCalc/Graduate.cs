@@ -24,6 +24,7 @@ namespace studentFinanceCalc
             public bool postgrad { get; set; }
 
             public decimal monthly_remainder { get; set; }
+            public decimal yearly_remainder { get; set; }
         }
 
         static void Main()
@@ -121,12 +122,12 @@ namespace studentFinanceCalc
                 graduate.monthly_remainder += (graduate.monthly_wage - POSTGRAD_MONTHLY_THRESHOLD) * POSTGRAD_TAX;
             }
 
-            decimal yearlyRemaining = graduate.monthly_remainder * 12m; // Move to same place as monthly_remainder?
+            decimal yearly_remainder = graduate.monthly_remainder * 12m;
 
             decimal monthlyLeftover = graduate.monthly_wage - graduate.monthly_remainder;
-            decimal yearlyLeftover = graduate.yearly_wage - yearlyRemaining;
+            decimal yearlyLeftover = graduate.yearly_wage - graduate.yearly_remainder;
 
-            Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.monthly_wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.monthly_remainder.ToString("F", CultureInfo.InvariantCulture)} every month in tax towards your student loans, leaving £{monthlyLeftover.ToString("F", CultureInfo.InvariantCulture)}. Out of a yearly pre-deduction wage of £{graduate.yearly_wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{yearlyRemaining.ToString("F", CultureInfo.InvariantCulture)} every year in tax towards your student loans, leaving £{yearlyLeftover.ToString("F", CultureInfo.InvariantCulture)}.\n\nThese figures do not account for other deductions for things like National Insurance and pension contributions. Also, they're just an estimate, I'm pretty bad at maths, and the interest rates for loans change at least yearly and sometimes more often! So double-check the government website!");
+            Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.monthly_wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.monthly_remainder.ToString("F", CultureInfo.InvariantCulture)} every month in tax towards your student loans, leaving £{monthlyLeftover.ToString("F", CultureInfo.InvariantCulture)}. Out of a yearly pre-deduction wage of £{graduate.yearly_wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.yearly_remainder.ToString("F", CultureInfo.InvariantCulture)} every year in tax towards your student loans, leaving £{yearlyLeftover.ToString("F", CultureInfo.InvariantCulture)}.\n\nThese figures do not account for other deductions for things like National Insurance and pension contributions. Also, they're just an estimate, I'm pretty bad at maths, and the interest rates for loans change at least yearly and sometimes more often! So double-check the government website!");
 
             // Note: there are other things we are taxed for, I can work those out and add on later.
         }
