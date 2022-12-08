@@ -2,11 +2,33 @@
 
 namespace studentFinanceCalc
 {
+    // Eg. class Graduate
+    // private decimal monthly_wage
+    // public int GatherWage(){wage int = int.Parse(Console.ReadLine());}
+    // ???? Maybe ????
+    // Another example:
+    /* class Account {
+     * private decimal balance = 0;
+     * 
+     * public bool WithdrawFunds ( decimal amount )
+     * {
+     * if ( balance < amount )
+     * { return false; }
+     * balance = balance - amount;
+     * return true;
+     * }
+     * }
+     * THEN: Would call AccountInstanceName.WithdrawFunds(5) for example to perform this on private decimal balance.
+     * Can place other methods on this object, then call them in Main.
+     */
     class Calculator
     {
         class Graduate
         {
             // Class per file, tidy this.
+            // Move out of Calculator?
+            // Check naming conventions for public vs. private.
+            // 'If it is a data member, make it private (lowercase). If it is a method member, make it public (uppercase).
             private string name;
             public string Name
             {
@@ -47,9 +69,11 @@ namespace studentFinanceCalc
                 plan4 = false,
                 postgrad = false
             };
+            // Add a constructor to Graduate and then initialise this as: new Graduate("", 0, 0, false ...) etc.?
 
             Console.WriteLine("Would you like to enter your wage monthly or yearly?\nPlease type a number:\n\n1. Monthly.\t2. Yearly.");
             int wageType = int.Parse(Console.ReadLine());
+            // Add more error-handling to ReadLines to get rid of warnings in case of improper input?
 
             switch (wageType)
             {
@@ -67,12 +91,13 @@ namespace studentFinanceCalc
                     Console.Write("Unreadable value provided!");
                     break;
             }
+            // Can these be methods or is it pointless abstraction?
 
             string plan1 = "1. You’re on Plan 1 if you’re:\n- An English or Welsh student who started an undergraduate course anywhere in the UK before 1 September 2012.\n- A Northern Irish student who started an undergraduate or postgraduate course anywhere in the UK on or after 1 September 1998.\n- An EU student who started an undergraduate course in England or Wales on or after 1 September 1998, but before 1 September 2012.\n- An EU student who started an undergraduate or postgraduate course in Northern Ireland on or after 1 September 1998.";
             string plan2 = "2. You’re on Plan 2 if you’re:\n- An English or Welsh student who started an undergraduate course anywhere in the UK on or after 1 September 2012.\n- An EU student who started an undergraduate course in England or Wales on or after 1 September 2012.\n- Someone who took out an Advanced Learner Loan on or after 1 August 2013.\n- Someone who took out a Higher Education Short Course Loan on or after 1 September 2022.";
             string plan4 = "3. You’re on Plan 4 if you’re:\n- A Scottish student who started an undergraduate or postgraduate course anywhere in the UK on or after 1 September 1998.\n- An EU student who started an undergraduate or postgraduate course in Scotland on or after 1 September 1998.";
             string postgrad = "4. You’re on a Postgraduate Loan repayment plan if you’re:\n- An English or Welsh student who took out a Postgraduate Master’s Loan on or after 1 August 2016.\n- An English or Welsh student who took out a Postgraduate Doctoral Loan on or after 1 August 2018.\nAn EU student who started a postgraduate course on or after 1 August 2016.";
-
+            // Can I move this somewhere tidier?
 
             Console.WriteLine($"Which of these statements is true?\nMore than one statement may be true if you have completed more than one programme of study.\nPlease type a number for each plan that applies to you, then press enter.\n\n{plan1}\n\n{plan2}\n\n{plan4}\n\n{postgrad}");
             string qualifications = Console.ReadLine();
@@ -85,6 +110,7 @@ namespace studentFinanceCalc
                 switch (c)
                 {
                     case '1': // Casting c if 1 to char with '', otherwise tries to convert to string or int.
+                        // You can use more than one case for the same outcome. Eg. could have case '1' and case "one".
                         graduate.plan1 = true;
                         graduate.monthly_remainder += (graduate.monthly_wage - PLAN_1_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
                         break;
@@ -105,15 +131,17 @@ namespace studentFinanceCalc
                         break;
                 }
             }
+            // Variables are different, so not sure how to clean up, but can surely?
 
             decimal yearly_remainder = graduate.monthly_remainder * 12m;
+            // Move as a method internal to class? Dislike that it is just sat here.
 
             decimal monthlyLeftover = graduate.monthly_wage - graduate.monthly_remainder;
             decimal yearlyLeftover = graduate.yearly_wage - graduate.yearly_remainder;
 
             Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.monthly_wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.monthly_remainder.ToString("F", CultureInfo.InvariantCulture)} every month in tax towards your student loans, leaving £{monthlyLeftover.ToString("F", CultureInfo.InvariantCulture)}. Out of a yearly pre-deduction wage of £{graduate.yearly_wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.yearly_remainder.ToString("F", CultureInfo.InvariantCulture)} every year in tax towards your student loans, leaving £{yearlyLeftover.ToString("F", CultureInfo.InvariantCulture)}.\n\nThese figures do not account for other deductions for things like National Insurance and pension contributions. Also, they're just an estimate, I'm pretty bad at maths, and the interest rates for loans change at least yearly and sometimes more often! So double-check the government website!");
 
-            // Note: there are other things we are taxed for, I can work those out and add on later.
+            // There are other things we are taxed for, I can work those out and add on later.
         }
     }
 }
