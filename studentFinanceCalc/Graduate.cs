@@ -2,12 +2,33 @@
 
 namespace studentFinanceCalc
 {
+    // Eg. class Graduate
+    // private decimal monthly_wage
+    // public int GatherWage(){wage int = int.Parse(Console.ReadLine());}
+    // ???? Maybe ????
+    // Another example:
+    /* class Account {
+     * private decimal balance = 0;
+     * 
+     * public bool WithdrawFunds ( decimal amount )
+     * {
+     * if ( balance < amount )
+     * { return false; }
+     * balance = balance - amount;
+     * return true;
+     * }
+     * }
+     * THEN: Would call AccountInstanceName.WithdrawFunds(5) for example to perform this on private decimal balance.
+     * Can place other methods on this object, then call them in Main.
+     */
     class Calculator
     {
         class Graduate
         {
-            // Class per file, tidy this. Move out of Calculator? Struct?
+            // Class per file, tidy this.
+            // Move out of Calculator?
             // Check naming conventions for public vs. private.
+            // 'If it is a data member, make it private (lowercase). If it is a method member, make it public (uppercase).
             private string name;
             public string Name
             {
@@ -70,6 +91,7 @@ namespace studentFinanceCalc
                     Console.Write("Unreadable value provided!");
                     break;
             }
+            // Can these be methods or is it pointless abstraction?
 
             string plan1 = "1. You’re on Plan 1 if you’re:\n- An English or Welsh student who started an undergraduate course anywhere in the UK before 1 September 2012.\n- A Northern Irish student who started an undergraduate or postgraduate course anywhere in the UK on or after 1 September 1998.\n- An EU student who started an undergraduate course in England or Wales on or after 1 September 1998, but before 1 September 2012.\n- An EU student who started an undergraduate or postgraduate course in Northern Ireland on or after 1 September 1998.";
             string plan2 = "2. You’re on Plan 2 if you’re:\n- An English or Welsh student who started an undergraduate course anywhere in the UK on or after 1 September 2012.\n- An EU student who started an undergraduate course in England or Wales on or after 1 September 2012.\n- Someone who took out an Advanced Learner Loan on or after 1 August 2013.\n- Someone who took out a Higher Education Short Course Loan on or after 1 September 2022.";
