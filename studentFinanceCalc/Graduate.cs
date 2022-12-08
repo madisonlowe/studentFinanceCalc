@@ -86,40 +86,24 @@ namespace studentFinanceCalc
                 {
                     case '1': // Casting c if 1 to char with '', otherwise tries to convert to string or int.
                         graduate.plan1 = true;
+                        graduate.monthly_remainder += (graduate.monthly_wage - PLAN_1_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
                         break;
                     case '2':
                         graduate.plan2 = true;
+                        graduate.monthly_remainder += (graduate.monthly_wage - PLAN_2_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
                         break;
                     case '3':
                         graduate.plan4 = true;
+                        graduate.monthly_remainder += (graduate.monthly_wage - PLAN_4_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
                         break;
                     case '4':
                         graduate.postgrad = true;
+                        graduate.monthly_remainder += (graduate.monthly_wage - POSTGRAD_MONTHLY_THRESHOLD) * POSTGRAD_TAX;
                         break;
                     default:
                         Console.WriteLine("Invalid value provided. You are not on any plan.");
                         break;
                 }
-            }
-
-            if (graduate.plan1)
-            {
-                graduate.monthly_remainder += (graduate.monthly_wage - PLAN_1_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
-            }
-
-            if (graduate.plan2)
-            {
-                graduate.monthly_remainder += (graduate.monthly_wage - PLAN_2_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
-            }
-
-            if (graduate.plan4)
-            {
-                graduate.monthly_remainder += (graduate.monthly_wage - PLAN_4_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
-            }
-
-            if (graduate.postgrad)
-            {
-                graduate.monthly_remainder += (graduate.monthly_wage - POSTGRAD_MONTHLY_THRESHOLD) * POSTGRAD_TAX;
             }
 
             decimal yearly_remainder = graduate.monthly_remainder * 12m;
