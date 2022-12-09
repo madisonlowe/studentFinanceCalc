@@ -3,6 +3,8 @@ using System.Linq;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
+using System.Diagnostics;
+using System.Diagnostics.Metrics;
 
 namespace studentFinanceCalc
 {
@@ -80,14 +82,12 @@ namespace studentFinanceCalc
             const decimal PLAN_2_MONTHLY_THRESHOLD = 2274m;
             const decimal PLAN_4_MONTHLY_THRESHOLD = 2114m;
             const decimal POSTGRAD_MONTHLY_THRESHOLD = 1750m;
-
             const decimal PLANS_1_2_4_TAX = 0.09m;
             const decimal POSTGRAD_TAX = 0.06m;
 
             ResourceManager rm = new ResourceManager("studentFinanceCalc.Resources",
                                typeof(Calculator).Assembly);
-
-            Graduate graduate = new Graduate(); // Try constructor next time.
+            Graduate graduate = new Graduate();
 
             Console.WriteLine(rm.GetString("monthlyOrYearly"));
             int wageType = int.Parse(Console.ReadLine());
@@ -112,12 +112,14 @@ namespace studentFinanceCalc
             string postgrad = rm.GetString("postgrad");
 
             Console.WriteLine($"Which of these statements is true?\nMore than one statement may be true if you have completed more than one programme of study.\nPlease type a number for each plan that applies to you, then press enter.\n\n{plan1}\n\n{plan2}\n\n{plan4}\n\n{postgrad}");
-            // Can I move this to Resources with variables?
+            // Couldn't move this to Resources with variables, as didn't show variable text, just their names.
+            // Could potentially make one resource which combines all strings and above writeline into one big paragraph.
+            // However: if details for just one plan change, might be hard to search or update neatly in future.
+            // So leaving as is for now, even though it's a couple extra lines of variable assignment.
+
             string qualifications = Console.ReadLine();
             string parsedQualifications = new String(qualifications.Where(Char.IsDigit).ToArray());
-
             char[] planArr = parsedQualifications.ToArray();
-
             foreach (char c in planArr)
             {
                 switch (c)
