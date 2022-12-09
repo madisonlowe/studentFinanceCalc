@@ -51,7 +51,7 @@ namespace studentFinanceCalc
             return Yearly_Wage;
         }
 
-        // Monthly remainder variable and methods.
+        // Remainder variables and methods.
         private decimal monthly_remainder = 0m;
         public decimal Monthly_Remainder
         {
@@ -59,12 +59,19 @@ namespace studentFinanceCalc
             set { Monthly_Remainder = value; }
         }
 
-        // Yearly remainder variable and methods.
         private decimal yearly_remainder = 0m;
         public decimal Yearly_Remainder
         {
             get { return Yearly_Remainder; }
             set { Yearly_Remainder = value; }
+        }
+
+        public decimal SetRemainders(bool planType, decimal threshold, decimal tax)
+        {
+            planType = true;
+            Monthly_Remainder += (Monthly_Wage - threshold) * tax;
+            Yearly_Remainder = Monthly_Remainder * 12m;
+            return Monthly_Remainder;
         }
 
         // Student payment plan bools.
