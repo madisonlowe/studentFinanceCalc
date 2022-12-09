@@ -2,10 +2,6 @@
 
 namespace studentFinanceCalc
 {
-    // Eg. class Graduate
-    // private decimal monthly_wage
-    // public int GatherWage(){wage int = int.Parse(Console.ReadLine());}
-    // ???? Maybe ????
     // Another example:
     /* class Account {
      * private decimal balance = 0;
@@ -18,13 +14,10 @@ namespace studentFinanceCalc
      * return true;
      * }
      * }
-     * THEN: Would call AccountInstanceName.WithdrawFunds(5) for example to perform this on private decimal balance.
-     * Can place other methods on this object, then call them in Main.
      */
     class Graduate
     {
         // Class per file?
-        // 'If it is a data member, make it private (lowercase). If it is a method member, make it public (uppercase).
 
         // Monthly wage variable and methods.
         private decimal monthly_wage = 0m;
@@ -58,13 +51,27 @@ namespace studentFinanceCalc
             return Yearly_Wage;
         }
 
+        // Monthly remainder variable and methods.
+        private decimal monthly_remainder = 0m;
+        public decimal Monthly_Remainder
+        {
+            get { return Monthly_Remainder; }
+            set { Monthly_Remainder = value; }
+        }
+
+        // Yearly remainder variable and methods.
+        private decimal yearly_remainder = 0m;
+        public decimal Yearly_Remainder
+        {
+            get { return Yearly_Remainder; }
+            set { Yearly_Remainder = value; }
+        }
+
+        // Student payment plan bools.
         public bool plan1 { get; set; }
         public bool plan2 { get; set; }
         public bool plan4 { get; set; }
         public bool postgrad { get; set; }
-
-        public decimal monthly_remainder { get; set; }
-        public decimal yearly_remainder { get; set; }
     }
 
     class Calculator
