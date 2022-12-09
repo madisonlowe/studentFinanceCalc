@@ -57,7 +57,7 @@ namespace studentFinanceCalc
         {
             planType = true;
             Monthly_Remainder += (Monthly_Wage - threshold) * tax;
-            Yearly_Remainder = Monthly_Remainder * 12m;
+            Yearly_Remainder = Monthly_Remainder * 12m; // Side-effects?
             return Monthly_Remainder;
         }
 
@@ -80,8 +80,7 @@ namespace studentFinanceCalc
             const decimal PLANS_1_2_4_TAX = 0.09m;
             const decimal POSTGRAD_TAX = 0.06m;
 
-            Graduate graduate = new Graduate();
-            // Add a constructor to Graduate and then initialise this as: new Graduate("", 0, 0, false ...) etc.?
+            Graduate graduate = new Graduate(); // Try constructor next time.
 
             Console.WriteLine("Would you like to enter your wage monthly or yearly?\nPlease type a number:\n\n1. Monthly.\t2. Yearly.");
             int wageType = int.Parse(Console.ReadLine());
