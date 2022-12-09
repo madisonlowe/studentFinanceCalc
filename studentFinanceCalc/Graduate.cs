@@ -24,25 +24,42 @@ namespace studentFinanceCalc
     class Graduate
     {
         // Class per file?
-        // Check naming conventions for public vs. private.
         // 'If it is a data member, make it private (lowercase). If it is a method member, make it public (uppercase).
 
-        private decimal test_wage = 0m;
-        public decimal Test_Wage
+        // Monthly wage variable and methods.
+        private decimal monthly_wage = 0m;
+        public decimal Monthly_Wage
         {
-            get { return test_wage; }
-            set { test_wage = value; }
+            get { return monthly_wage; }
+            set { monthly_wage = value; }
         }
 
-        public decimal GatherWages()
+        public decimal GatherMonthlyWage()
         {
-            Console.Write("Enter your wage: £");
-            Test_Wage = decimal.Parse(Console.ReadLine());
-            return Test_Wage;
+            Console.Write("Please enter your monthly wage: £");
+            Monthly_Wage = decimal.Parse(Console.ReadLine());
+            Yearly_Wage = Monthly_Wage * 12m;
+            return Monthly_Wage;
         }
 
-        public decimal monthly_wage { get; set; }
-        public decimal yearly_wage { get; set; }
+        // Yearly wage variable and methods.
+        private decimal yearly_wage = 0m;
+        public decimal Yearly_Wage
+        {
+            get { return yearly_wage; }
+            set { yearly_wage = value; }
+        }
+
+        public decimal GatherYearlyWage()
+        {
+            Console.Write("Please enter your yearly wage: £");
+            Yearly_Wage = decimal.Parse(Console.ReadLine());
+            Monthly_Wage = Yearly_Wage / 12m;
+            return Yearly_Wage;
+        }
+
+        // public decimal monthly_wage { get; set; } // Privatise and add method.
+        // public decimal yearly_wage { get; set; } // Privatise and add method.
 
         public bool plan1 { get; set; }
         public bool plan2 { get; set; }
@@ -75,12 +92,6 @@ namespace studentFinanceCalc
                 postgrad = false
             };
             // Add a constructor to Graduate and then initialise this as: new Graduate("", 0, 0, false ...) etc.?
-
-            Console.WriteLine(graduate.Test_Wage);
-
-            graduate.GatherWages();
-
-            Console.WriteLine(graduate.Test_Wage);
 
             Console.WriteLine("Would you like to enter your wage monthly or yearly?\nPlease type a number:\n\n1. Monthly.\t2. Yearly.");
             int wageType = int.Parse(Console.ReadLine());
