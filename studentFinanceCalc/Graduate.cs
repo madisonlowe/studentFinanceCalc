@@ -76,12 +76,6 @@ namespace studentFinanceCalc
     {
         static void Main()
         {
-            ResourceManager rm = new ResourceManager("studentFinanceCalc.Resources",
-                               typeof(Calculator).Assembly);
-            Console.WriteLine(rm.GetString("second"));
-
-            // csc Graduate.cs -resource:Resources.resources
-
             const decimal PLAN_1_MONTHLY_THRESHOLD = 1682m;
             const decimal PLAN_2_MONTHLY_THRESHOLD = 2274m;
             const decimal PLAN_4_MONTHLY_THRESHOLD = 2114m;
@@ -89,6 +83,9 @@ namespace studentFinanceCalc
 
             const decimal PLANS_1_2_4_TAX = 0.09m;
             const decimal POSTGRAD_TAX = 0.06m;
+
+            ResourceManager rm = new ResourceManager("studentFinanceCalc.Resources",
+                               typeof(Calculator).Assembly);
 
             Graduate graduate = new Graduate(); // Try constructor next time.
 
@@ -113,9 +110,9 @@ namespace studentFinanceCalc
             string plan2 = rm.GetString("plan2");
             string plan4 = rm.GetString("plan4");
             string postgrad = rm.GetString("postgrad");
-            // Attempting to move this to Resources but encountering about a million build errors from an earlier rename.
 
             Console.WriteLine($"Which of these statements is true?\nMore than one statement may be true if you have completed more than one programme of study.\nPlease type a number for each plan that applies to you, then press enter.\n\n{plan1}\n\n{plan2}\n\n{plan4}\n\n{postgrad}");
+            // Can I move this to Resources with variables?
             string qualifications = Console.ReadLine();
             string parsedQualifications = new String(qualifications.Where(Char.IsDigit).ToArray());
 
