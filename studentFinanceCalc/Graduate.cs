@@ -2,19 +2,6 @@
 
 namespace studentFinanceCalc
 {
-    // Another example:
-    /* class Account {
-     * private decimal balance = 0;
-     * 
-     * public bool WithdrawFunds ( decimal amount )
-     * {
-     * if ( balance < amount )
-     * { return false; }
-     * balance = balance - amount;
-     * return true;
-     * }
-     * }
-     */
     class Graduate
     {
         // Class per file?
@@ -55,15 +42,15 @@ namespace studentFinanceCalc
         private decimal monthly_remainder = 0m;
         public decimal Monthly_Remainder
         {
-            get { return Monthly_Remainder; }
-            set { Monthly_Remainder = value; }
+            get { return monthly_remainder; }
+            set { monthly_remainder = value; }
         }
 
         private decimal yearly_remainder = 0m;
         public decimal Yearly_Remainder
         {
-            get { return Yearly_Remainder; }
-            set { Yearly_Remainder = value; }
+            get { return yearly_remainder; }
+            set { yearly_remainder = value; }
         }
 
         public decimal SetRemainders(bool planType, decimal threshold, decimal tax)
@@ -137,35 +124,27 @@ namespace studentFinanceCalc
                 {
                     case '1': // Casting c if 1 to char with '', otherwise tries to convert to string or int.
                         // You can use more than one case for the same outcome. Eg. could have case '1' and case "one".
-                        graduate.plan1 = true;
-                        graduate.monthly_remainder += (graduate.monthly_wage - PLAN_1_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
+                        graduate.SetRemainders(graduate.plan1, PLAN_1_MONTHLY_THRESHOLD, PLANS_1_2_4_TAX);
                         break;
                     case '2':
-                        graduate.plan2 = true;
-                        graduate.monthly_remainder += (graduate.monthly_wage - PLAN_2_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
+                        graduate.SetRemainders(graduate.plan2, PLAN_2_MONTHLY_THRESHOLD, PLANS_1_2_4_TAX);
                         break;
                     case '3':
-                        graduate.plan4 = true;
-                        graduate.monthly_remainder += (graduate.monthly_wage - PLAN_4_MONTHLY_THRESHOLD) * PLANS_1_2_4_TAX;
+                        graduate.SetRemainders(graduate.plan4, PLAN_4_MONTHLY_THRESHOLD, PLANS_1_2_4_TAX);
                         break;
                     case '4':
-                        graduate.postgrad = true;
-                        graduate.monthly_remainder += (graduate.monthly_wage - POSTGRAD_MONTHLY_THRESHOLD) * POSTGRAD_TAX;
+                        graduate.SetRemainders(graduate.postgrad, POSTGRAD_MONTHLY_THRESHOLD, POSTGRAD_TAX);
                         break;
                     default:
                         Console.WriteLine("Invalid value provided. You are not on any plan.");
                         break;
                 }
             }
-            // Variables are different, so not sure how to clean up, but can surely?
 
-            decimal yearly_remainder = graduate.monthly_remainder * 12m;
-            // Move as a method internal to class? Dislike that it is just sat here.
+            decimal monthlyLeftover = graduate.Monthly_Wage - graduate.Monthly_Remainder;
+            decimal yearlyLeftover = graduate.Yearly_Wage - graduate.Yearly_Remainder;
 
-            decimal monthlyLeftover = graduate.monthly_wage - graduate.monthly_remainder;
-            decimal yearlyLeftover = graduate.yearly_wage - graduate.yearly_remainder;
-
-            Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.monthly_wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.monthly_remainder.ToString("F", CultureInfo.InvariantCulture)} every month in tax towards your student loans, leaving £{monthlyLeftover.ToString("F", CultureInfo.InvariantCulture)}. Out of a yearly pre-deduction wage of £{graduate.yearly_wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.yearly_remainder.ToString("F", CultureInfo.InvariantCulture)} every year in tax towards your student loans, leaving £{yearlyLeftover.ToString("F", CultureInfo.InvariantCulture)}.\n\nThese figures do not account for other deductions for things like National Insurance and pension contributions. Also, they're just an estimate, I'm pretty bad at maths, and the interest rates for loans change at least yearly and sometimes more often! So double-check the government website!");
+            Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.Monthly_Wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.Monthly_Remainder.ToString("F", CultureInfo.InvariantCulture)} every month in tax towards your student loans, leaving £{monthlyLeftover.ToString("F", CultureInfo.InvariantCulture)}. Out of a yearly pre-deduction wage of £{graduate.Yearly_Wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.Yearly_Remainder.ToString("F", CultureInfo.InvariantCulture)} every year in tax towards your student loans, leaving £{yearlyLeftover.ToString("F", CultureInfo.InvariantCulture)}.\n\nThese figures do not account for other deductions for things like National Insurance and pension contributions. Also, they're just an estimate, I'm pretty bad at maths, and the interest rates for loans change at least yearly and sometimes more often! So double-check the government website!");
 
             // There are other things we are taxed for, I can work those out and add on later.
         }
