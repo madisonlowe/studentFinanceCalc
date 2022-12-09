@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Resources;
 
 namespace studentFinanceCalc
 {
@@ -103,7 +104,7 @@ namespace studentFinanceCalc
             string plan2 = "2. You are on Plan 2 if you are:\n- An English or Welsh student who started an undergraduate course anywhere in the UK on or after 1 September 2012.\n- An EU student who started an undergraduate course in England or Wales on or after 1 September 2012.\n- Someone who took out an Advanced Learner Loan on or after 1 August 2013.\n- Someone who took out a Higher Education Short Course Loan on or after 1 September 2022.";
             string plan4 = "3. You are on Plan 4 if you are:\n- A Scottish student who started an undergraduate or postgraduate course anywhere in the UK on or after 1 September 1998.\n- An EU student who started an undergraduate or postgraduate course in Scotland on or after 1 September 1998.";
             string postgrad = "4. You are on a Postgraduate Loan repayment plan if you are:\n- An English or Welsh student who took out a Postgraduate Master’s Loan on or after 1 August 2016.\n- An English or Welsh student who took out a Postgraduate Doctoral Loan on or after 1 August 2018.\nAn EU student who started a postgraduate course on or after 1 August 2016.";
-            // Can I move this somewhere tidier?
+            // Attempting to move this to Resources but encountering about a million build errors from an earlier rename.
 
             Console.WriteLine($"Which of these statements is true?\nMore than one statement may be true if you have completed more than one programme of study.\nPlease type a number for each plan that applies to you, then press enter.\n\n{plan1}\n\n{plan2}\n\n{plan4}\n\n{postgrad}");
             string qualifications = Console.ReadLine();
