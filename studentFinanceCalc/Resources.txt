@@ -1,0 +1,16 @@
+﻿# Resources.txt
+# Because I will forget, future me: the command to rebuild this into .resources is `resgen Resources.txt`.
+#
+monthlyOrYearly=Would you like to enter your wage monthly or yearly? Please type a number.\n1. Monthly.\t2. Yearly.
+#
+# Plan 1 paragraph.
+plan1=1. You are on Plan 1 if you are:\n- An English or Welsh student who started an undergraduate course anywhere in the UK before 1 September 2012.\n- A Northern Irish student who started an undergraduate or postgraduate course anywhere in the UK on or after 1 September 1998.\n- An EU student who started an undergraduate course in England or Wales on or after 1 September 1998, but before 1 September 2012.\n- An EU student who started an undergraduate or postgraduate course in Northern Ireland on or after 1 September 1998.
+# Plan 2 paragraph.
+plan2=2. You are on Plan 2 if you are:\n- An English or Welsh student who started an undergraduate course anywhere in the UK on or after 1 September 2012.\n- An EU student who started an undergraduate course in England or Wales on or after 1 September 2012.\n- Someone who took out an Advanced Learner Loan on or after 1 August 2013.\n- Someone who took out a Higher Education Short Course Loan on or after 1 September 2022.
+# Plan 4 paragraph.
+plan4=3. You are on Plan 4 if you are:\n- A Scottish student who started an undergraduate or postgraduate course anywhere in the UK on or after 1 September 1998.\n- An EU student who started an undergraduate or postgraduate course in Scotland on or after 1 September 1998.
+# Postgraduate Plan paragraph.
+postgrad=4. You are on a Postgraduate Loan repayment plan if you are:\n- An English or Welsh student who took out a Postgraduate Master’s Loan on or after 1 August 2016.\n- An English or Welsh student who took out a Postgraduate Doctoral Loan on or after 1 August 2018.\nAn EU student who started a postgraduate course on or after 1 August 2016.
+#
+# Disclaimer.
+disclaimer=Please note, these figures do not account for other deductions for things like National Insurance and pension contributions. Also, they're just an estimate, I'm pretty bad at maths, and the interest rates for loans change at least yearly and sometimes more often! So double-check the government website!
