@@ -58,9 +58,6 @@ namespace studentFinanceCalc
             return Yearly_Wage;
         }
 
-        // public decimal monthly_wage { get; set; } // Privatise and add method.
-        // public decimal yearly_wage { get; set; } // Privatise and add method.
-
         public bool plan1 { get; set; }
         public bool plan2 { get; set; }
         public bool plan4 { get; set; }
@@ -84,8 +81,6 @@ namespace studentFinanceCalc
 
             Graduate graduate = new Graduate()
             {
-                monthly_wage = 0,
-                yearly_wage = 0,
                 plan1 = false,
                 plan2 = false,
                 plan4 = false,
@@ -100,20 +95,15 @@ namespace studentFinanceCalc
             switch (wageType)
             {
                 case 1:
-                    Console.Write("Please enter your monthly wage: £");
-                    graduate.monthly_wage = decimal.Parse(Console.ReadLine());
-                    graduate.yearly_wage = graduate.monthly_wage * 12m;
+                    graduate.GatherMonthlyWage();
                     break;
                 case 2:
-                    Console.Write("Please enter your yearly wage: £");
-                    graduate.yearly_wage = decimal.Parse(Console.ReadLine());
-                    graduate.monthly_wage = graduate.yearly_wage / 12m;
+                    graduate.GatherYearlyWage();
                     break;
                 default:
                     Console.Write("Unreadable value provided!");
                     break;
             }
-            // Can these be methods or is it pointless abstraction?
 
             string plan1 = "1. You’re on Plan 1 if you’re:\n- An English or Welsh student who started an undergraduate course anywhere in the UK before 1 September 2012.\n- A Northern Irish student who started an undergraduate or postgraduate course anywhere in the UK on or after 1 September 1998.\n- An EU student who started an undergraduate course in England or Wales on or after 1 September 1998, but before 1 September 2012.\n- An EU student who started an undergraduate or postgraduate course in Northern Ireland on or after 1 September 1998.";
             string plan2 = "2. You’re on Plan 2 if you’re:\n- An English or Welsh student who started an undergraduate course anywhere in the UK on or after 1 September 2012.\n- An EU student who started an undergraduate course in England or Wales on or after 1 September 2012.\n- Someone who took out an Advanced Learner Loan on or after 1 August 2013.\n- Someone who took out a Higher Education Short Course Loan on or after 1 September 2022.";
