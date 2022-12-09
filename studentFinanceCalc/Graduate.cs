@@ -21,34 +21,40 @@ namespace studentFinanceCalc
      * THEN: Would call AccountInstanceName.WithdrawFunds(5) for example to perform this on private decimal balance.
      * Can place other methods on this object, then call them in Main.
      */
-    class Calculator
+    class Graduate
     {
-        class Graduate
+        // Class per file?
+        // Check naming conventions for public vs. private.
+        // 'If it is a data member, make it private (lowercase). If it is a method member, make it public (uppercase).
+
+        private decimal test_wage = 0m;
+        public decimal Test_Wage
         {
-            // Class per file, tidy this.
-            // Move out of Calculator?
-            // Check naming conventions for public vs. private.
-            // 'If it is a data member, make it private (lowercase). If it is a method member, make it public (uppercase).
-            private string name;
-            public string Name
-            {
-                get { return name; }
-                set { name = value; }
-            }
-            // See: https://www.w3schools.com/cs/cs_properties.php.
-
-            public decimal monthly_wage { get; set; }
-            public decimal yearly_wage { get; set; }
-
-            public bool plan1 { get; set; }
-            public bool plan2 { get; set; }
-            public bool plan4 { get; set; }
-            public bool postgrad { get; set; }
-
-            public decimal monthly_remainder { get; set; }
-            public decimal yearly_remainder { get; set; }
+            get { return test_wage; }
+            set { test_wage = value; }
         }
 
+        public decimal GatherWages()
+        {
+            Console.Write("Enter your wage: £");
+            Test_Wage = decimal.Parse(Console.ReadLine());
+            return Test_Wage;
+        }
+
+        public decimal monthly_wage { get; set; }
+        public decimal yearly_wage { get; set; }
+
+        public bool plan1 { get; set; }
+        public bool plan2 { get; set; }
+        public bool plan4 { get; set; }
+        public bool postgrad { get; set; }
+
+        public decimal monthly_remainder { get; set; }
+        public decimal yearly_remainder { get; set; }
+    }
+
+    class Calculator
+    {
         static void Main()
         {
             const decimal PLAN_1_MONTHLY_THRESHOLD = 1682m;
@@ -61,7 +67,6 @@ namespace studentFinanceCalc
 
             Graduate graduate = new Graduate()
             {
-                Name = "",
                 monthly_wage = 0,
                 yearly_wage = 0,
                 plan1 = false,
@@ -70,6 +75,12 @@ namespace studentFinanceCalc
                 postgrad = false
             };
             // Add a constructor to Graduate and then initialise this as: new Graduate("", 0, 0, false ...) etc.?
+
+            Console.WriteLine(graduate.Test_Wage);
+
+            graduate.GatherWages();
+
+            Console.WriteLine(graduate.Test_Wage);
 
             Console.WriteLine("Would you like to enter your wage monthly or yearly?\nPlease type a number:\n\n1. Monthly.\t2. Yearly.");
             int wageType = int.Parse(Console.ReadLine());
