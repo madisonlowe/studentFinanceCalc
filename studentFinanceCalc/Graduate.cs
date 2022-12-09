@@ -62,10 +62,10 @@ namespace studentFinanceCalc
         }
 
         // Student payment plan bools.
-        public bool plan1 { get; set; }
-        public bool plan2 { get; set; }
-        public bool plan4 { get; set; }
-        public bool postgrad { get; set; }
+        public bool plan1 { get; set; } = false;
+        public bool plan2 { get; set; } = false;
+        public bool plan4 { get; set; } = false;
+        public bool postgrad { get; set; } = false;
     }
 
     class Calculator
@@ -80,13 +80,7 @@ namespace studentFinanceCalc
             const decimal PLANS_1_2_4_TAX = 0.09m;
             const decimal POSTGRAD_TAX = 0.06m;
 
-            Graduate graduate = new Graduate()
-            {
-                plan1 = false,
-                plan2 = false,
-                plan4 = false,
-                postgrad = false
-            };
+            Graduate graduate = new Graduate();
             // Add a constructor to Graduate and then initialise this as: new Graduate("", 0, 0, false ...) etc.?
 
             Console.WriteLine("Would you like to enter your wage monthly or yearly?\nPlease type a number:\n\n1. Monthly.\t2. Yearly.");
