@@ -1,5 +1,10 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Linq;
+using System.Globalization;
+using System.Reflection;
 using System.Resources;
+using System.Diagnostics;
+using System.Diagnostics.Metrics;
 
 namespace studentFinanceCalc
 {
@@ -77,13 +82,14 @@ namespace studentFinanceCalc
             const decimal PLAN_2_MONTHLY_THRESHOLD = 2274m;
             const decimal PLAN_4_MONTHLY_THRESHOLD = 2114m;
             const decimal POSTGRAD_MONTHLY_THRESHOLD = 1750m;
-
             const decimal PLANS_1_2_4_TAX = 0.09m;
             const decimal POSTGRAD_TAX = 0.06m;
 
-            Graduate graduate = new Graduate(); // Try constructor next time.
+            ResourceManager rm = new ResourceManager("studentFinanceCalc.Resources",
+                               typeof(Calculator).Assembly);
+            Graduate graduate = new Graduate();
 
-            Console.WriteLine("Would you like to enter your wage monthly or yearly?\nPlease type a number:\n\n1. Monthly.\t2. Yearly.");
+            Console.WriteLine(rm.GetString("monthlyOrYearly"));
             int wageType = int.Parse(Console.ReadLine());
             // Add more error-handling to ReadLines to get rid of warnings in case of improper input?
 
@@ -100,18 +106,20 @@ namespace studentFinanceCalc
                     break;
             }
 
-            string plan1 = "1. You are on Plan 1 if you are:\n- An English or Welsh student who started an undergraduate course anywhere in the UK before 1 September 2012.\n- A Northern Irish student who started an undergraduate or postgraduate course anywhere in the UK on or after 1 September 1998.\n- An EU student who started an undergraduate course in England or Wales on or after 1 September 1998, but before 1 September 2012.\n- An EU student who started an undergraduate or postgraduate course in Northern Ireland on or after 1 September 1998.";
-            string plan2 = "2. You are on Plan 2 if you are:\n- An English or Welsh student who started an undergraduate course anywhere in the UK on or after 1 September 2012.\n- An EU student who started an undergraduate course in England or Wales on or after 1 September 2012.\n- Someone who took out an Advanced Learner Loan on or after 1 August 2013.\n- Someone who took out a Higher Education Short Course Loan on or after 1 September 2022.";
-            string plan4 = "3. You are on Plan 4 if you are:\n- A Scottish student who started an undergraduate or postgraduate course anywhere in the UK on or after 1 September 1998.\n- An EU student who started an undergraduate or postgraduate course in Scotland on or after 1 September 1998.";
-            string postgrad = "4. You are on a Postgraduate Loan repayment plan if you are:\n- An English or Welsh student who took out a Postgraduate Master’s Loan on or after 1 August 2016.\n- An English or Welsh student who took out a Postgraduate Doctoral Loan on or after 1 August 2018.\nAn EU student who started a postgraduate course on or after 1 August 2016.";
-            // Attempting to move this to Resources but encountering about a million build errors from an earlier rename.
+            string plan1 = rm.GetString("plan1");
+            string plan2 = rm.GetString("plan2");
+            string plan4 = rm.GetString("plan4");
+            string postgrad = rm.GetString("postgrad");
 
             Console.WriteLine($"Which of these statements is true?\nMore than one statement may be true if you have completed more than one programme of study.\nPlease type a number for each plan that applies to you, then press enter.\n\n{plan1}\n\n{plan2}\n\n{plan4}\n\n{postgrad}");
+            // Couldn't move this to Resources with variables, as didn't show variable text, just their names.
+            // Could potentially make one resource which combines all strings and above writeline into one big paragraph.
+            // However: if details for just one plan change, might be hard to search or update neatly in future.
+            // So leaving as is for now, even though it's a couple extra lines of variable assignment.
+
             string qualifications = Console.ReadLine();
-            string parsedQualifications = new(qualifications.Where(Char.IsDigit).ToArray());
-
+            string parsedQualifications = new String(qualifications.Where(Char.IsDigit).ToArray());
             char[] planArr = parsedQualifications.ToArray();
-
             foreach (char c in planArr)
             {
                 switch (c)
@@ -138,7 +146,8 @@ namespace studentFinanceCalc
             decimal monthlyLeftover = graduate.Monthly_Wage - graduate.Monthly_Remainder;
             decimal yearlyLeftover = graduate.Yearly_Wage - graduate.Yearly_Remainder;
 
-            Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.Monthly_Wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.Monthly_Remainder.ToString("F", CultureInfo.InvariantCulture)} every month in tax towards your student loans, leaving £{monthlyLeftover.ToString("F", CultureInfo.InvariantCulture)}. Out of a yearly pre-deduction wage of £{graduate.Yearly_Wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.Yearly_Remainder.ToString("F", CultureInfo.InvariantCulture)} every year in tax towards your student loans, leaving £{yearlyLeftover.ToString("F", CultureInfo.InvariantCulture)}.\n\nThese figures do not account for other deductions for things like National Insurance and pension contributions. Also, they're just an estimate, I'm pretty bad at maths, and the interest rates for loans change at least yearly and sometimes more often! So double-check the government website!");
+            Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.Monthly_Wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.Monthly_Remainder.ToString("F", CultureInfo.InvariantCulture)} every month in tax towards your student loans, leaving £{monthlyLeftover.ToString("F", CultureInfo.InvariantCulture)}. Out of a yearly pre-deduction wage of £{graduate.Yearly_Wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.Yearly_Remainder.ToString("F", CultureInfo.InvariantCulture)} every year in tax towards your student loans, leaving £{yearlyLeftover.ToString("F", CultureInfo.InvariantCulture)}.");
+            Console.WriteLine(rm.GetString("disclaimer"));
 
             // There are other things we are taxed for, I can work those out and add on later.
         }

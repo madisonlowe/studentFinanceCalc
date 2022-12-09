@@ -10,5 +10,11 @@
 
   <ItemGroup>
     <None Remove="StringRes.resources" />
+    <None Remove="Resources.resources" />
+    <None Remove="Resources.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resources" />
+    <EmbeddedResource Include="Resources.txt" />
   </ItemGroup>
 </Project>
