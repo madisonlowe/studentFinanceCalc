@@ -4,4 +4,4 @@ This is a console application which can take in a number of relevant arguments a
 
 Huge caveat that the UK student loan system is dark magic, subject to regular change, and none of this in any way constitutes mathematically or programmatically sound financial advice. I'm just getting into C# and wanted something to experiment with the basics on, so here we are!
 
-Currently: the first draft of the code is done, but untidy and in need of a lot of work, which will come next.
+Currently: attempting to add Resources, but I changed the file name a while back for this project, and it's come back to haunt me every time I try to run a build.
