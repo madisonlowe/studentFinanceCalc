@@ -10,7 +10,7 @@ namespace studentFinanceCalc
 {
     class Graduate
     {
-        // Class per file?
+        // Class per file? Add error handling to methods.
 
         // Monthly wage variable and methods.
         private decimal monthly_wage = 0m;
@@ -20,7 +20,7 @@ namespace studentFinanceCalc
             set { monthly_wage = value; }
         }
 
-        public decimal GatherMonthlyWage()
+        public decimal GatherMonthlyWage() // Add error handling.
         {
             Console.Write("Please enter your monthly wage: £");
             Monthly_Wage = decimal.Parse(Console.ReadLine());
@@ -36,7 +36,7 @@ namespace studentFinanceCalc
             set { yearly_wage = value; }
         }
 
-        public decimal GatherYearlyWage()
+        public decimal GatherYearlyWage() // Add error handling.
         {
             Console.Write("Please enter your yearly wage: £");
             Yearly_Wage = decimal.Parse(Console.ReadLine());
@@ -93,7 +93,7 @@ namespace studentFinanceCalc
             int wageType = int.Parse(Console.ReadLine());
             // Add more error-handling to ReadLines to get rid of warnings in case of improper input?
 
-            switch (wageType)
+            switch (wageType) // Change to while loop? To allow for default case relooping?
             {
                 case 1:
                     graduate.GatherMonthlyWage();
@@ -124,7 +124,8 @@ namespace studentFinanceCalc
             {
                 switch (c)
                 {
-                    case '1': // Casting c if 1 to char with '', otherwise tries to convert to string or int.
+                    case '1':
+                        // Casting c if 1 to char with '', otherwise tries to convert to string or int.
                         // You can use more than one case for the same outcome. Eg. could have case '1' and case "one".
                         graduate.SetRemainders(graduate.plan1, PLAN_1_MONTHLY_THRESHOLD, PLANS_1_2_4_TAX);
                         break;
