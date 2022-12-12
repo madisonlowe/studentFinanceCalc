@@ -1,10 +1,8 @@
 # Student Finance Repayment Calculator
 
-This is a console application which can take in a number of relevant arguments and appropriately return the percentages and amounts of student loan repayments that would be deducted from a given wage. Not especially ground-breaking stuff, I've just been getting into C# and wanted something to do that I could experiment with the basics on and get started with, so here we are.
+This is a console application which can take in a number of relevant arguments and appropriately return the percentages and amounts of student loan repayments that would be deducted from a given wage. I've been getting into C# and wanted something to do that I could experiment with the basics on, so here we are. There's definitely a lot to tidy or improve - suggestions and notes welcome - but this was a fun first exercise, and I'm excited to build more things in the language!
 
 Huge caveat on content that the UK student loan system is dark magic, subject to regular change, and none of this in any way constitutes mathematically or programmatically sound financial advice.
-
-Currently: attempting to tidy up code, specifically the final `Console.WriteLine()` calls and maybe where the various repayment plans are displayed to the user.
 
 ## Notes & Learned
 
