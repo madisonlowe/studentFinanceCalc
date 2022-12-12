@@ -40,7 +40,7 @@ namespace studentFinanceCalc
             set { yearly_wage = value; }
         }
 
-        public decimal GatherYearlyWage() // Add error handling for spaces.
+        public decimal GatherYearlyWage()
         {
             Console.Write("Please enter your yearly wage: £");
             string? input = Console.ReadLine();
@@ -100,10 +100,15 @@ namespace studentFinanceCalc
             Graduate graduate = new Graduate();
 
             Console.WriteLine(rm.GetString("monthlyOrYearly"));
-            int wageType = int.Parse(Console.ReadLine());
-            // Add more error-handling to ReadLines to get rid of warnings in case of improper input?
-
-            switch (wageType) // Change to while loop? To allow for default case relooping?
+            string? wageInput = Console.ReadLine();
+            // Put repeated null/empty/whitespace checks into function.
+            while (string.IsNullOrEmpty(wageInput) || string.IsNullOrWhiteSpace(wageInput) || wageInput.All(Char.IsLetter))
+            {
+                Console.WriteLine("Invalid input! Please type a number.");
+                wageInput = Console.ReadLine();
+            }
+            int wageType = int.Parse(wageInput);
+            switch (wageType)
             {
                 case 1:
                     graduate.GatherMonthlyWage();
@@ -121,8 +126,6 @@ namespace studentFinanceCalc
             string? plan2 = rm.GetString("plan2");
             string? plan4 = rm.GetString("plan4");
             string? postgrad = rm.GetString("postgrad");
-            // Change nullable string assignment / provide alternative.
-            // Gets rid of console errors but not ideal except to make console quicker.
 
             Console.WriteLine($"{planIntro}\n\n{plan1}\n\n{plan2}\n\n{plan4}\n\n{postgrad}");
             // Could potentially make one resource which combines all strings and above writeline into one big paragraph,
@@ -130,7 +133,12 @@ namespace studentFinanceCalc
             // However: wanted Resources.txt to be readable and editable, which I didn't think it would be with one giant variable.
             // So leaving as is for now.
 
-            string qualifications = Console.ReadLine();
+            string? qualifications = Console.ReadLine();
+            while (string.IsNullOrEmpty(qualifications) || string.IsNullOrWhiteSpace(qualifications) || qualifications.All(Char.IsLetter))
+            {
+                Console.WriteLine("Invalid input! Please type a number.");
+                qualifications = Console.ReadLine();
+            }
             string parsedQualifications = new String(qualifications.Where(Char.IsDigit).ToArray());
             char[] planArr = parsedQualifications.ToArray();
             foreach (char c in planArr)
@@ -162,8 +170,6 @@ namespace studentFinanceCalc
 
             Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.Monthly_Wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.Monthly_Remainder.ToString("F", CultureInfo.InvariantCulture)} every month in tax towards your student loans, leaving £{monthlyLeftover.ToString("F", CultureInfo.InvariantCulture)}. Out of a yearly pre-deduction wage of £{graduate.Yearly_Wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.Yearly_Remainder.ToString("F", CultureInfo.InvariantCulture)} every year in tax towards your student loans, leaving £{yearlyLeftover.ToString("F", CultureInfo.InvariantCulture)}.");
             Console.WriteLine(rm.GetString("disclaimer"));
-
-            // There are other things we are taxed for, I can work those out and add on later.
         }
     }
 }

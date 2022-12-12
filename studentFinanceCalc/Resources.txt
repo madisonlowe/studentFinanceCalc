@@ -4,7 +4,6 @@
 monthlyOrYearly=Would you like to enter your wage monthly or yearly? Please type a number.\n1. Monthly.\t2. Yearly.
 #
 # Plan introduction.
-#
 planIntro=Which of these statements is true?\nMore than one statement may be true if you have completed more than one programme of study.\nPlease type a number for each plan that applies to you, then press enter.
 #
 # Plan 1 paragraph.
