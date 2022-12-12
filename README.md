@@ -4,7 +4,7 @@ This is a console application which can take in a number of relevant arguments a
 
 Huge caveat on content that the UK student loan system is dark magic, subject to regular change, and none of this in any way constitutes mathematically or programmatically sound financial advice.
 
-Currently: attempting to slim down repeated checks on user input.
+Currently: attempting to tidy up code, specifically the final `Console.WriteLine()` calls and maybe where the various repayment plans are displayed to the user.
 
 ## Notes & Learned
 
