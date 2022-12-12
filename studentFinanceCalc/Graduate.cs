@@ -127,20 +127,8 @@ namespace studentFinanceCalc
             }
 
             string? planParagraph = rm.GetString("planParagraph");
-            //string? planIntro = rm.GetString("planIntro");
-            //string? plan1 = rm.GetString("plan1");
-            //string? plan2 = rm.GetString("plan2");
-            //string? plan4 = rm.GetString("plan4");
-            //string? postgrad = rm.GetString("postgrad");
-
             Console.WriteLine(planParagraph);
-            /* 
-             * Could make one resource variable which combines all strings and above WriteLine 
-             * into one paragraph,then would only have to call one variable and display it once. 
-             * However: wanted Resources.txt to be readable and easily editable, 
-             * which I didn't think it would be with one giant variable. 
-             * So leaving as is for now.
-             */
+            // planParagraph also split into smaller paragraphs in Resources.txt for editing readability.
 
             string? qualifications = Checker(Console.ReadLine());
             string parsedQualifications = new String(qualifications.Where(Char.IsDigit).ToArray());
@@ -171,7 +159,7 @@ namespace studentFinanceCalc
             decimal monthlyLeftover = graduate.Monthly_Wage - graduate.Monthly_Remainder;
             decimal yearlyLeftover = graduate.Yearly_Wage - graduate.Yearly_Remainder;
 
-            Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.Monthly_Wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.Monthly_Remainder.ToString("F", CultureInfo.InvariantCulture)} every month in tax towards your student loans, leaving £{monthlyLeftover.ToString("F", CultureInfo.InvariantCulture)}. Out of a yearly pre-deduction wage of £{graduate.Yearly_Wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.Yearly_Remainder.ToString("F", CultureInfo.InvariantCulture)} every year in tax towards your student loans, leaving £{yearlyLeftover.ToString("F", CultureInfo.InvariantCulture)}.");
+            Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.Monthly_Wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.Monthly_Remainder.ToString("F", CultureInfo.InvariantCulture)} every month in tax towards your student loans, leaving £{monthlyLeftover.ToString("F", CultureInfo.InvariantCulture)}.\nOut of a yearly pre-deduction wage of £{graduate.Yearly_Wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.Yearly_Remainder.ToString("F", CultureInfo.InvariantCulture)} every year in tax towards your student loans, leaving £{yearlyLeftover.ToString("F", CultureInfo.InvariantCulture)}.");
             Console.WriteLine(rm.GetString("disclaimer"));
         }
     }
