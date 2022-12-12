@@ -74,7 +74,7 @@ namespace studentFinanceCalc
             planType = true;
             Monthly_Remainder += (Monthly_Wage - threshold) * tax;
             Yearly_Remainder = Monthly_Remainder * 12m; // Side-effects?
-            return Monthly_Remainder;
+            return Monthly_Remainder; // Don't love these returns, vis-a-vis above comment.
         }
 
         // Student payment plan bools.
@@ -86,6 +86,16 @@ namespace studentFinanceCalc
 
     class Calculator
     {
+        static string Checker(string? input)
+        {
+            while (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input) || input.All(Char.IsLetter))
+            {
+                Console.WriteLine("Invalid input! Please type a number.");
+                input = Console.ReadLine();
+            }
+            return input;
+        }
+
         static void Main()
         {
             const decimal PLAN_1_MONTHLY_THRESHOLD = 1682m;
@@ -100,14 +110,9 @@ namespace studentFinanceCalc
             Graduate graduate = new Graduate();
 
             Console.WriteLine(rm.GetString("monthlyOrYearly"));
-            string? wageInput = Console.ReadLine();
-            // Put repeated null/empty/whitespace checks into function.
-            while (string.IsNullOrEmpty(wageInput) || string.IsNullOrWhiteSpace(wageInput) || wageInput.All(Char.IsLetter))
-            {
-                Console.WriteLine("Invalid input! Please type a number.");
-                wageInput = Console.ReadLine();
-            }
+            string? wageInput = Checker(Console.ReadLine());
             int wageType = int.Parse(wageInput);
+
             switch (wageType)
             {
                 case 1:
@@ -133,14 +138,10 @@ namespace studentFinanceCalc
             // However: wanted Resources.txt to be readable and editable, which I didn't think it would be with one giant variable.
             // So leaving as is for now.
 
-            string? qualifications = Console.ReadLine();
-            while (string.IsNullOrEmpty(qualifications) || string.IsNullOrWhiteSpace(qualifications) || qualifications.All(Char.IsLetter))
-            {
-                Console.WriteLine("Invalid input! Please type a number.");
-                qualifications = Console.ReadLine();
-            }
+            string? qualifications = Checker(Console.ReadLine());
             string parsedQualifications = new String(qualifications.Where(Char.IsDigit).ToArray());
             char[] planArr = parsedQualifications.ToArray();
+
             foreach (char c in planArr)
             {
                 switch (c)
