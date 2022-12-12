@@ -106,16 +106,20 @@ namespace studentFinanceCalc
                     break;
             }
 
-            string plan1 = rm.GetString("plan1");
-            string plan2 = rm.GetString("plan2");
-            string plan4 = rm.GetString("plan4");
-            string postgrad = rm.GetString("postgrad");
+            string? planIntro = rm.GetString("planIntro");
+            string? plan1 = rm.GetString("plan1");
+            string? plan2 = rm.GetString("plan2");
+            string? plan4 = rm.GetString("plan4");
+            string? postgrad = rm.GetString("postgrad");
+            // Change nullable string assignment / provide alternative.
+            // Gets rid of console errors but not ideal except to make console quicker.
 
-            Console.WriteLine($"Which of these statements is true?\nMore than one statement may be true if you have completed more than one programme of study.\nPlease type a number for each plan that applies to you, then press enter.\n\n{plan1}\n\n{plan2}\n\n{plan4}\n\n{postgrad}");
+            Console.WriteLine($"{planIntro}\n\n{plan1}\n\n{plan2}\n\n{plan4}\n\n{postgrad}");
             // Couldn't move this to Resources with variables, as didn't show variable text, just their names.
-            // Could potentially make one resource which combines all strings and above writeline into one big paragraph.
-            // However: if details for just one plan change, might be hard to search or update neatly in future.
-            // So leaving as is for now, even though it's a couple extra lines of variable assignment.
+            // Could potentially make one resource which combines all strings and above writeline into one big paragraph,
+            // then would only have to call one variable and display it once.
+            // However: wanted Resources.txt to be readable, which I didn't think it would be with one giant variable.
+            // So leaving as is for now.
 
             string qualifications = Console.ReadLine();
             string parsedQualifications = new String(qualifications.Where(Char.IsDigit).ToArray());
