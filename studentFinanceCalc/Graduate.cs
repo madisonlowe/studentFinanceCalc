@@ -96,6 +96,11 @@ namespace studentFinanceCalc
             return input;
         }
 
+        static string Formatter(decimal input)
+        {
+            return input.ToString("F", CultureInfo.InvariantCulture);
+        }
+
         static void Main()
         {
             const decimal PLAN_1_MONTHLY_THRESHOLD = 1682m;
