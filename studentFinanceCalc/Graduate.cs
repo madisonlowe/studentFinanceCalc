@@ -126,17 +126,21 @@ namespace studentFinanceCalc
                     break;
             }
 
-            string? planIntro = rm.GetString("planIntro");
-            string? plan1 = rm.GetString("plan1");
-            string? plan2 = rm.GetString("plan2");
-            string? plan4 = rm.GetString("plan4");
-            string? postgrad = rm.GetString("postgrad");
+            string? planParagraph = rm.GetString("planParagraph");
+            //string? planIntro = rm.GetString("planIntro");
+            //string? plan1 = rm.GetString("plan1");
+            //string? plan2 = rm.GetString("plan2");
+            //string? plan4 = rm.GetString("plan4");
+            //string? postgrad = rm.GetString("postgrad");
 
-            Console.WriteLine($"{planIntro}\n\n{plan1}\n\n{plan2}\n\n{plan4}\n\n{postgrad}");
-            // Could potentially make one resource which combines all strings and above writeline into one big paragraph,
-            // then would only have to call one variable and display it once.
-            // However: wanted Resources.txt to be readable and editable, which I didn't think it would be with one giant variable.
-            // So leaving as is for now.
+            Console.WriteLine(planParagraph);
+            /* 
+             * Could make one resource variable which combines all strings and above WriteLine 
+             * into one paragraph,then would only have to call one variable and display it once. 
+             * However: wanted Resources.txt to be readable and easily editable, 
+             * which I didn't think it would be with one giant variable. 
+             * So leaving as is for now.
+             */
 
             string? qualifications = Checker(Console.ReadLine());
             string parsedQualifications = new String(qualifications.Where(Char.IsDigit).ToArray());
