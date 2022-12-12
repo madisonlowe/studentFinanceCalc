@@ -95,6 +95,7 @@ namespace studentFinanceCalc
             }
             return input;
         }
+
         static void Main()
         {
             const decimal PLAN_1_MONTHLY_THRESHOLD = 1682m;
@@ -111,6 +112,7 @@ namespace studentFinanceCalc
             Console.WriteLine(rm.GetString("monthlyOrYearly"));
             string? wageInput = Checker(Console.ReadLine());
             int wageType = int.Parse(wageInput);
+
             switch (wageType)
             {
                 case 1:
@@ -139,6 +141,7 @@ namespace studentFinanceCalc
             string? qualifications = Checker(Console.ReadLine());
             string parsedQualifications = new String(qualifications.Where(Char.IsDigit).ToArray());
             char[] planArr = parsedQualifications.ToArray();
+
             foreach (char c in planArr)
             {
                 switch (c)
