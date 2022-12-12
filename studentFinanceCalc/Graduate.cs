@@ -18,11 +18,11 @@ namespace studentFinanceCalc
             set { monthly_wage = value; }
         }
 
-        public decimal GatherMonthlyWage() // Add error handling for spaces.
+        public decimal GatherMonthlyWage()
         {
             Console.Write("Please enter your monthly wage: £");
             string? input = Console.ReadLine();
-            while (string.IsNullOrEmpty(input) || input.All(Char.IsLetter))
+            while (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input) || input.All(Char.IsLetter))
             {
                 Console.WriteLine("Invalid input! Please type a number.");
                 input = Console.ReadLine();
@@ -44,7 +44,7 @@ namespace studentFinanceCalc
         {
             Console.Write("Please enter your yearly wage: £");
             string? input = Console.ReadLine();
-            while (string.IsNullOrEmpty(input) || input.All(Char.IsLetter))
+            while (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input) || input.All(Char.IsLetter))
             {
                 Console.WriteLine("Invalid input! Please type a number.");
                 input = Console.ReadLine();
