@@ -159,7 +159,7 @@ namespace studentFinanceCalc
             decimal monthlyLeftover = graduate.Monthly_Wage - graduate.Monthly_Remainder;
             decimal yearlyLeftover = graduate.Yearly_Wage - graduate.Yearly_Remainder;
 
-            Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.Monthly_Wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.Monthly_Remainder.ToString("F", CultureInfo.InvariantCulture)} every month in tax towards your student loans, leaving £{monthlyLeftover.ToString("F", CultureInfo.InvariantCulture)}.\nOut of a yearly pre-deduction wage of £{graduate.Yearly_Wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.Yearly_Remainder.ToString("F", CultureInfo.InvariantCulture)} every year in tax towards your student loans, leaving £{yearlyLeftover.ToString("F", CultureInfo.InvariantCulture)}.");
+            Console.WriteLine($"Out of a monthly pre-deduction wage of £{graduate.Monthly_Wage.ToString("F", CultureInfo.InvariantCulture)}, you will be repay £{graduate.Monthly_Remainder.ToString("F", CultureInfo.InvariantCulture)} monthly towards your student loans, leaving £{monthlyLeftover.ToString("F", CultureInfo.InvariantCulture)}.\nOut of a yearly pre-deduction wage of £{graduate.Yearly_Wage.ToString("F", CultureInfo.InvariantCulture)}, you will repay £{graduate.Yearly_Remainder.ToString("F", CultureInfo.InvariantCulture)} yearly towards your student loans, leaving £{yearlyLeftover.ToString("F", CultureInfo.InvariantCulture)}.");
             Console.WriteLine(rm.GetString("disclaimer"));
         }
     }
