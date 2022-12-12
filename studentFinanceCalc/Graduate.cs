@@ -88,7 +88,7 @@ namespace studentFinanceCalc
     {
         static string Checker(string? input)
         {
-            while (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input) || input.All(Char.IsLetter))
+            while (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input) || !input.All(Char.IsNumber))
             {
                 Console.WriteLine("Invalid input! Please type a number.");
                 input = Console.ReadLine();
