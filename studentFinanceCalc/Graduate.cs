@@ -23,7 +23,13 @@ namespace studentFinanceCalc
         public decimal GatherMonthlyWage() // Add error handling.
         {
             Console.Write("Please enter your monthly wage: £");
-            Monthly_Wage = decimal.Parse(Console.ReadLine());
+            string? input = Console.ReadLine();
+            while (string.IsNullOrEmpty(input) || input.All(Char.IsLetter))
+            {
+                Console.WriteLine("Invalid input! Please type a number.");
+                input = Console.ReadLine();
+            }
+            Monthly_Wage = decimal.Parse(input);
             Yearly_Wage = Monthly_Wage * 12m;
             return Monthly_Wage;
         }
@@ -115,10 +121,9 @@ namespace studentFinanceCalc
             // Gets rid of console errors but not ideal except to make console quicker.
 
             Console.WriteLine($"{planIntro}\n\n{plan1}\n\n{plan2}\n\n{plan4}\n\n{postgrad}");
-            // Couldn't move this to Resources with variables, as didn't show variable text, just their names.
             // Could potentially make one resource which combines all strings and above writeline into one big paragraph,
             // then would only have to call one variable and display it once.
-            // However: wanted Resources.txt to be readable, which I didn't think it would be with one giant variable.
+            // However: wanted Resources.txt to be readable and editable, which I didn't think it would be with one giant variable.
             // So leaving as is for now.
 
             string qualifications = Console.ReadLine();
