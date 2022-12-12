@@ -146,8 +146,6 @@ namespace studentFinanceCalc
                 switch (c)
                 {
                     case '1':
-                        // Casting c if 1 to char with '', otherwise tries to convert to string or int.
-                        // You can use more than one case for the same outcome. Eg. could have case '1' and case "one".
                         graduate.SetRemainders(graduate.plan1, PLAN_1_MONTHLY_THRESHOLD, PLANS_1_2_4_TAX);
                         break;
                     case '2':
