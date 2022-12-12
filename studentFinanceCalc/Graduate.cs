@@ -10,8 +10,6 @@ namespace studentFinanceCalc
 {
     class Graduate
     {
-        // Class per file? Add error handling to methods.
-
         // Monthly wage variable and methods.
         private decimal monthly_wage = 0m;
         public decimal Monthly_Wage
@@ -20,7 +18,7 @@ namespace studentFinanceCalc
             set { monthly_wage = value; }
         }
 
-        public decimal GatherMonthlyWage() // Add error handling.
+        public decimal GatherMonthlyWage() // Add error handling for spaces.
         {
             Console.Write("Please enter your monthly wage: £");
             string? input = Console.ReadLine();
@@ -42,10 +40,16 @@ namespace studentFinanceCalc
             set { yearly_wage = value; }
         }
 
-        public decimal GatherYearlyWage() // Add error handling.
+        public decimal GatherYearlyWage() // Add error handling for spaces.
         {
             Console.Write("Please enter your yearly wage: £");
-            Yearly_Wage = decimal.Parse(Console.ReadLine());
+            string? input = Console.ReadLine();
+            while (string.IsNullOrEmpty(input) || input.All(Char.IsLetter))
+            {
+                Console.WriteLine("Invalid input! Please type a number.");
+                input = Console.ReadLine();
+            }
+            Yearly_Wage = decimal.Parse(input);
             Monthly_Wage = Yearly_Wage / 12m;
             return Yearly_Wage;
         }
